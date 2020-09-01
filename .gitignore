@@ -2,6 +2,7 @@ data/
 # .vscode/
 # keys/
 # .aws_shortcut
+*.h5
 
 
 # Byte-compiled / optimized / DLL files
