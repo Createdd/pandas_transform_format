@@ -54,6 +54,7 @@ placebo==0.9.0
 prometheus-client==0.8.0
 prompt-toolkit==3.0.6
 ptyprocess==0.6.0
+pyarrow==1.0.1
 pycodestyle==2.6.0
 pycparser==2.20
 pyexcel==0.6.4

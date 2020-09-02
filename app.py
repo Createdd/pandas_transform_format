@@ -10,6 +10,8 @@ import io
 app = Flask(__name__)
 UPLOAD_DIRECTORY = "."
 
+conversions = ['h5', 'pkl', 'feather', 'parquet' ]
+
 @app.route('/', methods=['GET'])
 def home():
     return 'This app provides data format transformation!'
@@ -21,17 +23,28 @@ def download_file():
         provided_data = request.files.get('file')
         if provided_data is None:
             return 'Please enter valid excel format ', 400
+        provided_format = request.form.get('format')
+        if provided_format is None:
+            return f'Please enter valid format to convert.', 400
+        if provided_format not in conversions:
+            return f'Please enter valid format to convert. Can be {list(conversions)}', 400
 
-        data = provided_data
-        df = pd.read_csv(data)
-
-        file_name = 'titanic_data.h5'
+        df = pd.read_csv(provided_data)
+        file_name = f'converted.{provided_format}'
         path = f'./{file_name}'
 
-        df.to_hdf(
-            path,
-            file_name,
-            mode='w')
+        if provided_format == 'h5':
+            df.to_hdf(
+                path,
+                file_name,
+                mode='w')
+        elif provided_format == 'pkl':
+            df.to_pickle(path)
+        elif provided_format == 'parquet':
+            df.to_pickle(path)
+        elif provided_format == 'feather':
+            df.to_pickle(path)
+
 
         try:
             return send_from_directory(UPLOAD_DIRECTORY, filename=file_name, as_attachment=True)
