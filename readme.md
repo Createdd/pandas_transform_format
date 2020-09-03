@@ -6,7 +6,7 @@
   <p align="center">
     Convert Excel (csv) file to other formats
     <br />
-    <a href="https://github.com/Createdd/Writing/blob/master/2020/articles/pythonApi.md"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Createdd/Writing/blob/master/2020/articles/pythonApi.md"><strong>Explore the tutorial »</strong></a>
     <br />
     <br />
   </p>
