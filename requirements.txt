@@ -18,7 +18,6 @@ docutils==0.15.2
 durationpy==0.5
 entrypoints==0.3
 Flask==1.1.2
-Flask-Excel==0.0.7
 future==0.18.2
 hjson==3.0.1
 idna==2.10
