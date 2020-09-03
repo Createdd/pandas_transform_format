@@ -1,11 +1,9 @@
 import json
 import os
+
 import pandas as pd
+from flask import Flask, request, send_from_directory, abort
 
-from flask import Flask, request, jsonify, send_file, send_from_directory, abort
-import flask_excel as excel
-
-import io
 
 app = Flask(__name__)
 UPLOAD_DIRECTORY = "."
@@ -45,7 +43,6 @@ def download_file():
         elif provided_format == 'feather':
             df.to_pickle(path)
 
-
         try:
             return send_from_directory(UPLOAD_DIRECTORY, filename=file_name, as_attachment=True)
         except FileNotFoundError:
@@ -58,7 +55,7 @@ def remove_file(new_file):
     os.remove(path)
 
 
-@app.route('/upload', methods=['GET', 'POST'])
+@app.route('/get_json', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         provided_data = request.files.get('file')
@@ -79,5 +76,4 @@ def upload_file():
 
 if __name__ == '__main__':
     # app.run(debug=True)
-    excel.init_excel(app)
     app.run()
